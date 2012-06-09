@@ -1,0 +1,28 @@
+Starts an HTTP MIDI server that queues requests and plays notes.
+
+Author: Bryan Smith
+
+========= HOW START THE SERVER =========
+To run:
+> java -jar MidiHTTPServer.jar [options]
+
+To view options:
+> java -jar MidiHTTPServer.jar --help
+
+========= HOW TO PLAY NOTES =========
+To play a note, point your browser (or any other client that can issue HTTP requests) using a URL with the following form:
+
+http://127.0.0.1:[port]/tone=[tone]&duration=[duration]
+
+Where:
+  - port: The port the server is bound to. Unless you changed this, it's 1500.
+  - tone: Cb,C,Cs,Db,D,Ds,Eb,E,Fb,F,Fs,Gb,G,Gs,Ab,A,As,Bb,B
+  - duration: number of milliseconds. E.g., 1 second => 1000
+
+There are a few shell scripts that play some scales. If they do not work for you, make sure you set permissions:
+
+chmod +x *.sh
+
+If still doesn't work, make sure you have the unix tool, curl. You can always change the scripts to use whatever apps you want.
+
+
