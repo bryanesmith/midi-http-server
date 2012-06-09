@@ -1,0 +1,58 @@
+------------------------------------------------------------------------
+1. When I run the server, I get an error:
+------------------------------------------------------------------------
+
+Failed to load MIDI instruments: Audio Device Unavailable
+javax.sound.midi.MidiUnavailableException: Audio Device Unavailable
+
+
+ANSWER:
+
+If you are using linux, you might need to load the proper kernel modules.
+
+First, run this command:
+
+lsmod | grep snd_seq
+
+If you don't see a list of modules loaded, then run the following command:
+
+sudo modprobe snd_seq
+
+If this does not solve your problem, use your package manager to search for MIDI applications, and see whether you can play MIDI on those.
+
+Restart your computer after install any software.
+
+I actually had this problem on a fresh Ubuntu install, but not on XP. After loading the module, nothing worked. I restarted my machine, and the problem persisted. I ran the server using the default port:
+
+sudo java -jar dist/MidiHTTPServer.jar
+
+After failing, I specified the port:
+
+sudo java -jar dist/MidiHTTPServer.jar -p 1500
+
+And it worked. Odd enough, give it a go if all else fails.
+
+
+-------------------------------------------------------------------------
+2. When I run the shell scripts to play scales, nothing happens
+-------------------------------------------------------------------------
+
+ANSWER:
+
+a. Are they executable? Go to the directory in your shell and type:
+
+chmod +x *.sh
+
+b. Did you run the server? If the server isn't bound to a port, then the scripts won't run!
+
+c. Do you have curl installed? In a console, type:
+
+curl
+
+You should see a message telling you to type curl --help if it is installed. Otherwise, you will have to install curl.
+
+------------------------------------------------------------------------
+3. The notes' tempo is all off, too much latency, etc.
+------------------------------------------------------------------------
+
+This isn't a serious musical tool. Every note is a single HTTP request! Expect latency.
