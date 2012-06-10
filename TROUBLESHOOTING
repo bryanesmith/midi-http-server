@@ -22,16 +22,13 @@ If this does not solve your problem, use your package manager to search for MIDI
 
 Restart your computer after install any software.
 
-I actually had this problem on a fresh Ubuntu install, but not on XP. After loading the module, nothing worked. I restarted my machine, and the problem persisted. I ran the server using the default port:
+I actually had this problem on a fresh Ubuntu install, but not on XP. After loading the module, nothing worked. I restarted my machine, and the problem persisted. I ran the server using the default port (1500):
 
 sudo java -jar dist/MidiHTTPServer.jar
 
-After failing, I specified the port:
+If this port does not work, specify a port:
 
-sudo java -jar dist/MidiHTTPServer.jar -p 1500
-
-And it worked. Odd enough, give it a go if all else fails.
-
+sudo java -jar dist/MidiHTTPServer.jar -p 8888
 
 -------------------------------------------------------------------------
 2. When I run the shell scripts to play scales, nothing happens
@@ -55,4 +52,5 @@ You should see a message telling you to type curl --help if it is installed. Oth
 3. The notes' tempo is all off, too much latency, etc.
 ------------------------------------------------------------------------
 
-This isn't a serious musical tool. Every note is a single HTTP request! Expect latency.
+This isn't a serious musical tool. Every note is a single HTTP request, so you should expect latency.
+
